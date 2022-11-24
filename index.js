@@ -20,7 +20,14 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 async function run() {
     try {
+        const categoriesCollection = client.db("phoneGarage").collection("categories")
 
+        // ...categories..
+        app.get('/categories', async (req, res) => {
+            const query = {}
+            const allCategories = await categoriesCollection.find(query).toArray()
+            res.send(allCategories)
+        })
     }
     finally {
 
