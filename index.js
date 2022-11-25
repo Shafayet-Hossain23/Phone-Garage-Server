@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors');
 const port = process.env.PORT || 5000
+const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
@@ -22,6 +23,7 @@ async function run() {
     try {
         const categoriesCollection = client.db("phoneGarage").collection("categories")
         const productsCollection = client.db("phoneGarage").collection("productCollection")
+        const usersCollection = client.db("phoneGarage").collection("users")
 
         // ...categories..
         app.get('/categories', async (req, res) => {
@@ -51,7 +53,32 @@ async function run() {
                 return res.send({ accessToken: token })
             }
             res.send({ accessToken: " " })
+
         })
+        // ..all users collection..
+
+        app.post('/users', async (req, res) => {
+            const user = req.body
+            const userCollection = await usersCollection.insertOne(user)
+            res.send(userCollection)
+        })
+
+        // ...users loginPopup check
+        app.post('/users/popup', async (req, res) => {
+            const user = req.body
+            // console.log(user)
+            const query = { email: user.email }
+            const alreadyAddeduser = await usersCollection.findOne(query)
+            if (!alreadyAddeduser) {
+                const userCollection = await usersCollection.insertOne(user)
+                return res.send(userCollection)
+            }
+            if (alreadyAddeduser) {
+                return res.send(alreadyAddeduser)
+            }
+
+        })
+
     }
     finally {
 
