@@ -24,6 +24,7 @@ async function run() {
         const categoriesCollection = client.db("phoneGarage").collection("categories")
         const productsCollection = client.db("phoneGarage").collection("productCollection")
         const usersCollection = client.db("phoneGarage").collection("users")
+        const bookingsCollection = client.db("phoneGarage").collection("bookings")
 
         // ...categories..
         app.get('/categories', async (req, res) => {
@@ -77,6 +78,13 @@ async function run() {
                 return res.send(alreadyAddeduser)
             }
 
+        })
+
+        //...... bookingsCollection
+        app.post('/bookings', async (req, res) => {
+            const bookingInfo = req.body
+            const result = await bookingsCollection.insertOne(bookingInfo)
+            res.send(result)
         })
 
     }

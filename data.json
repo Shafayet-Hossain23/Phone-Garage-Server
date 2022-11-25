@@ -9,7 +9,8 @@
         "time": "Nov 25, 2022, 9:20:56 AM",
         "sellersName": "Shafayet Hossain",
         "category": "xiaomi",
-        "email": "mdshafayethossain6530@gmail.com"
+        "email": "mdshafayethossain6530@gmail.com",
+        "phoneNo": "01711111124"
     },
     {
         "image": "https://images.hindustantimes.com/tech/img/2020/07/13/960x540/xiaomi_redmi_note_8_official_1594642030115_1594642039683.png",
@@ -21,7 +22,8 @@
         "time": "Nov 22, 2022, 11:20:56 AM",
         "sellersName": "Mominul Islam",
         "category": "xiaomi",
-        "email": "mominulislam@gmail.com"
+        "email": "mominulislam@gmail.com",
+        "phoneNo": "01712145124"
     },
     {
         "image": "https://5.imimg.com/data5/YR/CW/MY-64115608/redmi-note-4-mobile-500x500.png",
@@ -34,7 +36,8 @@
         "sellersName": "Shakowat Hossain",
         "category": "xiaomi",
         "verifiedStatus": "verified",
-        "email": "shakowat@gmail.com"
+        "email": "shakowat@gmail.com",
+        "phoneNo": "01714782124"
     },
     {
         "image": "https://www.financialexpress.com/wp-content/uploads/2022/01/oneplus-main.png",
@@ -47,7 +50,8 @@
         "sellersName": "Habibur",
         "category": "onePlus",
         "verifiedStatus": "verified",
-        "email": "habibur@gmail.com"
+        "email": "habibur@gmail.com",
+        "phoneNo": "01714781485"
     },
     {
         "image": "https://images.firstpost.com/wp-content/uploads/2019/10/oneplus-7t-1024.jpg",
@@ -59,7 +63,8 @@
         "time": "Nov 06, 2022, 11:20:56 PM",
         "sellersName": "Korban Ali",
         "category": "onePlus",
-        "email": "korban@gmail.com"
+        "email": "korban@gmail.com",
+        "phoneNo": "01314882124"
     },
     {
         "image": "https://cdn.didongviet.vn/pub/media/wysiwyg/oneplus-7/hieu-nang-oneplus-7-pro-didongviet.jpg",
@@ -71,7 +76,8 @@
         "time": "Nov 18, 2022, 11:20:56 PM",
         "sellersName": "Rifat",
         "category": "onePlus",
-        "email": "rigat@gmail.com"
+        "email": "rifat@gmail.com",
+        "phoneNo": "01713382124"
     },
     {
         "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone12pro_10132020.jpg.landing-big_2x.jpg",
@@ -84,7 +90,8 @@
         "sellersName": "Md.Zuanid Hossain",
         "category": "iphone",
         "verifiedStatus": "verified",
-        "email": "zunaid@gmail.com"
+        "email": "zunaid@gmail.com",
+        "phoneNo": "01714782774"
     },
     {
         "image": "https://imageio.forbes.com/specials-images/imageserve/5d877a9d6de3150009a4ba74/iPhone-11-Pro-Max-in--Midnight-Green-/960x0.jpg?format=jpg&width=960",
@@ -96,7 +103,8 @@
         "time": "Nov 13, 2022, 11:20:56 PM",
         "sellersName": "Md.Minhaz",
         "category": "iphone",
-        "email": "minhaz@gmail.com"
+        "email": "minhaz@gmail.com",
+        "phoneNo": "01714799124"
     },
     {
         "image": "https://www.cnet.com/a/img/resize/153c24f5d657f5da4cfb2bae3ceeb5359d97ab16/hub/2017/08/10/ba4cdebe-8ae6-406d-b016-81db2a4a84dc/screen-shot-2017-08-10-at-1-03-35-pm.png?auto=webp&fit=crop&height=675&width=1200",
@@ -108,6 +116,7 @@
         "time": "Nov 13, 2022, 11:20:56 PM",
         "sellersName": "Shamim Reza",
         "category": "iphone",
-        "email": "shamim@gmail.com"
+        "email": "shamim@gmail.com",
+        "phoneNo": "01714782584"
     }
 ]
