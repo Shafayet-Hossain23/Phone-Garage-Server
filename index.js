@@ -21,12 +21,36 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         const categoriesCollection = client.db("phoneGarage").collection("categories")
+        const productsCollection = client.db("phoneGarage").collection("productCollection")
 
         // ...categories..
         app.get('/categories', async (req, res) => {
             const query = {}
             const allCategories = await categoriesCollection.find(query).toArray()
             res.send(allCategories)
+        })
+        // ...productCollection..
+        app.get('/products/:category', async (req, res) => {
+            const getCategory = req.params.category
+            const query = {
+                category: getCategory
+            }
+            const result = await productsCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        // ..jwt set up when user register or login..
+        app.get('/jwt', async (req, res) => {
+            const email = req.query.email
+            const query = {
+                email: email
+            }
+            const user = await usersCollection.findOne(query)
+            if (user) {
+                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: "1hr" })
+                return res.send({ accessToken: token })
+            }
+            res.send({ accessToken: " " })
         })
     }
     finally {
