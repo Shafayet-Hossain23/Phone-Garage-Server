@@ -14,8 +14,23 @@ app.get('/', (req, res) => {
     res.send('Welcome to phone garage!')
 })
 
-// ....mongodb connection..
+// ...jwt middleware...
+function verifyJWT(req, res, next) {
+    const authHeader = req?.headers?.authorization
+    if (!authHeader) {
+        return res.send({ message: "unauthorized access" })
+    }
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN, function (err, decoded) {
+        if (err) {
+            return res.send({ message: "Access forbidden" })
+        }
+        req.decoded = decoded
+        next()
+    })
+}
 
+// ....mongodb connection..
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xazyemr.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -83,8 +98,34 @@ async function run() {
         //...... bookingsCollection
         app.post('/bookings', async (req, res) => {
             const bookingInfo = req.body
+            console.log(bookingInfo)
+            const query = {
+                customerEmail: bookingInfo.customerEmail,
+                productId: bookingInfo.productId
+            }
+            console.log(query)
+            const alreadyBooked = await bookingsCollection.find(query).toArray()
+            if (alreadyBooked.length) {
+                const message = `You have already booked this ${bookingInfo.ProductName}`
+                return res.send({ acknowledged: false, message })
+            }
             const result = await bookingsCollection.insertOne(bookingInfo)
             res.send(result)
+        })
+
+        //booking collection by email
+        app.get('/bookings', verifyJWT, async (req, res) => {
+            const email = req.query.email
+            const decodedEmail = req.decoded.email
+            if (email !== decodedEmail) {
+                return res.send({ message: "Access forbidden" })
+            }
+            const query = {
+                customerEmail: email
+            }
+            const result = await bookingsCollection.find(query).toArray()
+            res.send(result)
+
         })
 
     }
