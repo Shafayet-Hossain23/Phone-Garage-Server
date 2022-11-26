@@ -53,10 +53,11 @@ async function run() {
         app.get('/products/:category', async (req, res) => {
             const getCategory = req.params.category
             const query = {
-                category: getCategory
+                category: getCategory,
+                paid: false
             }
-            const result = await productsCollection.find(query).toArray()
-            res.send(result)
+            const productsByCatg = await productsCollection.find(query).toArray()
+            res.send(productsByCatg)
         })
 
         // ..jwt set up when user register or login..
@@ -170,6 +171,17 @@ async function run() {
                 }
             }
             const updatedResult = await bookingsCollection.updateOne(filter, updatedDoc)
+            const productId = payment.productId
+            const productFilter = {
+                _id: ObjectId(productId)
+            }
+            const productUpdatedDoc = {
+                $set: {
+                    paid: true,
+                    transactionId: payment.transactionId
+                }
+            }
+            const productUpdatedResult = await productsCollection.updateOne(productFilter, productUpdatedDoc)
             res.send(result);
         })
     }

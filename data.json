@@ -2,7 +2,7 @@
     {
         "image": "https://www.smartprix.com/bytes/wp-content/uploads/2019/03/Xiaomi-Redmi-Note-7-Pro-review-with-pros-and-cons-44.jpg",
         "ProductName": "Xiaomi Redmi Note 7 Pro",
-        "lacation": "Rajshahi",
+        "location": "Rajshahi",
         "resalePrice": "70",
         "originalPrice": "150",
         "yearsOfUse": "1 year",
@@ -10,12 +10,13 @@
         "sellersName": "Shafayet Hossain",
         "category": "xiaomi",
         "email": "mdshafayethossain6530@gmail.com",
-        "phoneNo": "01711111124"
+        "phoneNo": "01711111124",
+        "paid": false
     },
     {
         "image": "https://images.hindustantimes.com/tech/img/2020/07/13/960x540/xiaomi_redmi_note_8_official_1594642030115_1594642039683.png",
         "ProductName": "Xiaomi Redmi Note 8",
-        "lacation": "Bogura",
+        "location": "Bogura",
         "resalePrice": "79",
         "originalPrice": "160",
         "yearsOfUse": "1 year 5 months",
@@ -23,12 +24,13 @@
         "sellersName": "Mominul Islam",
         "category": "xiaomi",
         "email": "mominulislam@gmail.com",
-        "phoneNo": "01712145124"
+        "phoneNo": "01712145124",
+        "paid": false
     },
     {
         "image": "https://5.imimg.com/data5/YR/CW/MY-64115608/redmi-note-4-mobile-500x500.png",
         "ProductName": "Xiaomi Redmi Note 4",
-        "lacation": "Mohadevpur",
+        "location": "Mohadevpur",
         "resalePrice": "39",
         "originalPrice": "120",
         "yearsOfUse": "3 year 5 months",
@@ -37,12 +39,13 @@
         "category": "xiaomi",
         "verifiedStatus": "verified",
         "email": "shakowat@gmail.com",
-        "phoneNo": "01714782124"
+        "phoneNo": "01714782124",
+        "paid": false
     },
     {
         "image": "https://www.financialexpress.com/wp-content/uploads/2022/01/oneplus-main.png",
         "ProductName": "OnePlus 10 pro",
-        "lacation": "Dhaka",
+        "location": "Dhaka",
         "resalePrice": "99",
         "originalPrice": "220",
         "yearsOfUse": "1 year 5 months",
@@ -51,12 +54,13 @@
         "category": "onePlus",
         "verifiedStatus": "verified",
         "email": "habibur@gmail.com",
-        "phoneNo": "01714781485"
+        "phoneNo": "01714781485",
+        "paid": false
     },
     {
         "image": "https://images.firstpost.com/wp-content/uploads/2019/10/oneplus-7t-1024.jpg",
         "ProductName": "OnePlus 7T",
-        "lacation": "Joypurthat",
+        "location": "Joypurthat",
         "resalePrice": "88",
         "originalPrice": "200",
         "yearsOfUse": "2 year 5 months",
@@ -64,12 +68,13 @@
         "sellersName": "Korban Ali",
         "category": "onePlus",
         "email": "korban@gmail.com",
-        "phoneNo": "01314882124"
+        "phoneNo": "01314882124",
+        "paid": false
     },
     {
         "image": "https://cdn.didongviet.vn/pub/media/wysiwyg/oneplus-7/hieu-nang-oneplus-7-pro-didongviet.jpg",
         "ProductName": "OnePlus 7",
-        "lacation": "Mirzapur",
+        "location": "Mirzapur",
         "resalePrice": "110",
         "originalPrice": "230",
         "yearsOfUse": " 5 months",
@@ -77,12 +82,13 @@
         "sellersName": "Rifat",
         "category": "onePlus",
         "email": "rifat@gmail.com",
-        "phoneNo": "01713382124"
+        "phoneNo": "01713382124",
+        "paid": false
     },
     {
         "image": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_announce-iphone12pro_10132020.jpg.landing-big_2x.jpg",
         "ProductName": " Iphone 12 Pro",
-        "lacation": "Mirzapur",
+        "location": "Mirzapur",
         "resalePrice": "800",
         "originalPrice": "1200",
         "yearsOfUse": "1 year 5 months",
@@ -91,12 +97,13 @@
         "category": "iphone",
         "verifiedStatus": "verified",
         "email": "zunaid@gmail.com",
-        "phoneNo": "01714782774"
+        "phoneNo": "01714782774",
+        "paid": false
     },
     {
         "image": "https://imageio.forbes.com/specials-images/imageserve/5d877a9d6de3150009a4ba74/iPhone-11-Pro-Max-in--Midnight-Green-/960x0.jpg?format=jpg&width=960",
         "ProductName": " Iphone 11 Pro",
-        "lacation": "Naogaon",
+        "location": "Naogaon",
         "resalePrice": "700",
         "originalPrice": "1100",
         "yearsOfUse": "1 year 5 months",
@@ -104,12 +111,13 @@
         "sellersName": "Md.Minhaz",
         "category": "iphone",
         "email": "minhaz@gmail.com",
-        "phoneNo": "01714799124"
+        "phoneNo": "01714799124",
+        "paid": false
     },
     {
         "image": "https://www.cnet.com/a/img/resize/153c24f5d657f5da4cfb2bae3ceeb5359d97ab16/hub/2017/08/10/ba4cdebe-8ae6-406d-b016-81db2a4a84dc/screen-shot-2017-08-10-at-1-03-35-pm.png?auto=webp&fit=crop&height=675&width=1200",
         "ProductName": " Iphone 10",
-        "lacation": "Naogaon",
+        "location": "Naogaon",
         "resalePrice": "350",
         "originalPrice": "1000",
         "yearsOfUse": "2 year 5 months",
@@ -117,6 +125,7 @@
         "sellersName": "Shamim Reza",
         "category": "iphone",
         "email": "shamim@gmail.com",
-        "phoneNo": "01714782584"
+        "phoneNo": "01714782584",
+        "paid": false
     }
 ]
