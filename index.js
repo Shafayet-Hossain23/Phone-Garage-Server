@@ -5,6 +5,7 @@ const port = process.env.PORT || 5000
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 // ...middleWare...
 app.use(cors());
@@ -135,6 +136,8 @@ async function run() {
             const result = await bookingsCollection.findOne(query)
             res.send(result)
         })
+
+        // ...payment..
 
     }
     finally {
