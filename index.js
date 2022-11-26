@@ -43,6 +43,30 @@ async function run() {
         const bookingsCollection = client.db("phoneGarage").collection("bookings")
         const paymentsCollection = client.db("phoneGarage").collection("payments")
 
+        // ...verify seller and use it after verify JWT...
+        const verifySeller = async (req, res, next) => {
+            const decodedEmail = req?.decoded?.email
+            const query = {
+                email: decodedEmail
+            }
+            const currentUser = await usersCollection.findOne(query)
+            if (currentUser?.accountStatus !== "Seller Account") {
+                return res.status(403).send({ message: "Forbidden access" })
+            }
+            next()
+        }
+        // ...verify admin and use it after verify JWT...
+        const verifyAdmin = async (req, res, next) => {
+            const decodedEmail = req?.decoded?.email
+            const query = {
+                email: decodedEmail
+            }
+            const currentUser = await usersCollection.findOne(query)
+            if (currentUser?.accountStatus !== "Admin") {
+                return res.status(403).send({ message: "Forbidden access" })
+            }
+            next()
+        }
         // ...categories..
         app.get('/categories', async (req, res) => {
             const query = {}
@@ -183,6 +207,25 @@ async function run() {
             }
             const productUpdatedResult = await productsCollection.updateOne(productFilter, productUpdatedDoc)
             res.send(result);
+        })
+        // ...seller option...
+        app.get('/users/seller', async (req, res) => {
+            const email = req.query.email;
+            const query = {
+                email: email
+            }
+            const user = await usersCollection.findOne(query);
+            res.send({ isSeller: user.accountStatus === "Seller Account" })
+        })
+
+        // ..admin option..
+        app.get('/users/admin', async (req, res) => {
+            const email = req.query.email;
+            const query = {
+                email: email
+            }
+            const user = await usersCollection.findOne(query);
+            res.send({ isAdmin: user.accountStatus === "Admin" })
         })
     }
     finally {
