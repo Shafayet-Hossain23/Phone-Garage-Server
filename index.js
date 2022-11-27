@@ -298,6 +298,15 @@ async function run() {
             const updateSeller = await usersCollection.updateOne(query, updatedDoc);
             res.send({ updateProductsByEmail, updateSeller })
         })
+        app.delete('/deleteSeller', verifyJWT, verifyAdmin, async (req, res) => {
+            const email = req.query.email
+            const query = {
+                email: email
+            }
+            const deleteUser = await usersCollection.deleteOne(query)
+            const deleteProducts = await productsCollection.deleteMany(query)
+            res.send({ deleteUser, deleteProducts })
+        })
     }
     finally {
 
