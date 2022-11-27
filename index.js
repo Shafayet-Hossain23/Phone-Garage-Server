@@ -88,12 +88,28 @@ async function run() {
             const result = await productsCollection.insertOne(productInfo);
             res.send(result)
         })
-        app.get('/products/seller', async (req, res) => {
+        app.get('/sellerProducts', verifyJWT, verifySeller, async (req, res) => {
             const email = req.query.email
             const query = {
                 email: email
             }
             const result = await productsCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        // ...advertise..
+        app.post('/advertise/:id', verifyJWT, verifySeller, async (req, res) => {
+            const id = req.params.id
+            const query = {
+                _id: ObjectId(id)
+            }
+            // const productById = await productsCollection.findOne(query)
+            const productUpdatedDoc = {
+                $set: {
+                    isAdvertise: true
+                }
+            }
+            const result = await productsCollection.updateOne(query, productUpdatedDoc)
             res.send(result)
         })
 
