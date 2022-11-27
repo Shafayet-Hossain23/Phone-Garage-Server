@@ -83,6 +83,11 @@ async function run() {
             const productsByCatg = await productsCollection.find(query).toArray()
             res.send(productsByCatg)
         })
+        app.post('/products', verifyJWT, verifySeller, async (req, res) => {
+            const productInfo = req.body
+            const result = await productsCollection.insertOne(productInfo);
+            res.send(result)
+        })
 
         // ..jwt set up when user register or login..
         app.get('/jwt', async (req, res) => {
