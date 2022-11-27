@@ -113,6 +113,15 @@ async function run() {
             const result = await productsCollection.updateOne(filter, productUpdatedDoc)
             res.send(result)
         })
+        // show advertise productsCollection.
+        app.get('/advertiseProducts', async (req, res) => {
+            const query = {
+                isAdvertise: true,
+                paid: false
+            }
+            const result = await productsCollection.find(query).toArray()
+            res.send(result)
+        })
 
         // ..jwt set up when user register or login..
         app.get('/jwt', async (req, res) => {
