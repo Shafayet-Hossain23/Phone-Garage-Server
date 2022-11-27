@@ -98,9 +98,10 @@ async function run() {
         })
 
         // ...advertise..
-        app.post('/advertise/:id', verifyJWT, verifySeller, async (req, res) => {
-            const id = req.params.id
-            const query = {
+        app.put('/advertise', verifyJWT, verifySeller, async (req, res) => {
+            const id = req.query.id
+            console.log(id)
+            const filter = {
                 _id: ObjectId(id)
             }
             // const productById = await productsCollection.findOne(query)
@@ -109,7 +110,7 @@ async function run() {
                     isAdvertise: true
                 }
             }
-            const result = await productsCollection.updateOne(query, productUpdatedDoc)
+            const result = await productsCollection.updateOne(filter, productUpdatedDoc)
             res.send(result)
         })
 
