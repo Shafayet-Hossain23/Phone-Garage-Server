@@ -122,7 +122,14 @@ async function run() {
             const result = await productsCollection.find(query).toArray()
             res.send(result)
         })
-
+        // ..delete products
+        app.delete('/products/delete/:id', verifyJWT, verifySeller, async (req, res) => {
+            const id = req.params.id
+            // console.log(id)
+            const query = { _id: ObjectId(id) }
+            const result = await productsCollection.deleteOne(query)
+            res.send(result)
+        })
         // ..jwt set up when user register or login..
         app.get('/jwt', async (req, res) => {
             const email = req.query.email
