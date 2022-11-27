@@ -83,9 +83,17 @@ async function run() {
             const productsByCatg = await productsCollection.find(query).toArray()
             res.send(productsByCatg)
         })
-        app.post('/products', verifyJWT, verifySeller, async (req, res) => {
+        app.post('/products/add', verifyJWT, verifySeller, async (req, res) => {
             const productInfo = req.body
             const result = await productsCollection.insertOne(productInfo);
+            res.send(result)
+        })
+        app.get('/products/seller', async (req, res) => {
+            const email = req.query.email
+            const query = {
+                email: email
+            }
+            const result = await productsCollection.find(query).toArray()
             res.send(result)
         })
 
