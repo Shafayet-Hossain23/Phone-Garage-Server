@@ -138,7 +138,7 @@ async function run() {
             }
             const user = await usersCollection.findOne(query)
             if (user) {
-                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: "1hr" })
+                const token = jwt.sign({ email }, process.env.ACCESS_TOKEN, { expiresIn: "24hr" })
                 return res.send({ accessToken: token })
             }
             res.send({ accessToken: " " })
@@ -272,6 +272,31 @@ async function run() {
             }
             const user = await usersCollection.findOne(query);
             res.send({ isAdmin: user.accountStatus === "Admin" })
+        })
+        // ..allSellerCollection...
+        app.get('/allSellers', verifyJWT, verifyAdmin, async (req, res) => {
+            const query = {
+                accountStatus: "Seller Account"
+            }
+            const result = await usersCollection.find(query).toArray()
+            res.send(result)
+        })
+        // ..verifySeller..
+        app.put('/verifySeller', verifyJWT, verifyAdmin, async (req, res) => {
+            const email = req.query.email
+            const query = {
+                email: email
+            }
+            // const productsByEmail = await productsCollection.find(query).toArray()
+            const updatedDoc = {
+                $set: {
+                    verifiedStatus: "verified",
+                }
+            }
+            const updateProductsByEmail = await productsCollection.updateMany(query, updatedDoc);
+
+            const updateSeller = await usersCollection.updateOne(query, updatedDoc);
+            res.send({ updateProductsByEmail, updateSeller })
         })
     }
     finally {
