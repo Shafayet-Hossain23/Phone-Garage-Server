@@ -96,16 +96,17 @@ async function run() {
             const result = await productsCollection.find(query).toArray()
             res.send(result)
         })
-        app.put('/reportProduct', verifyJWT, verifyAdmin, async (req, res) => {
+        // ..reportProducts..
+        app.put('/reportProduct', async (req, res) => {
             const id = req.query.id
-            const query = {
-                _id: ObjectId(id),
-                isReport: true,
-            }
-            const alreadyReportedProduct = await productsCollection.findOne(query)
-            if (alreadyReportedProduct.length > 0) {
-                return res.send({ message: "Product is already reported" })
-            }
+            // const query = {
+            //     _id: ObjectId(id),
+            //     isReport: true,
+            // }
+            // const alreadyReportedProduct = await productsCollection.findOne(query)
+            // if (alreadyReportedProduct && alreadyReportedProduct.length) {
+            //     return res.send({ message: "Product is already reported" })
+            // }
             const filter = {
                 _id: ObjectId(id)
             }
@@ -117,6 +118,21 @@ async function run() {
             const result = await productsCollection.updateOne(filter, updatedDoc);
             res.send(result)
 
+        })
+        // ..reported items
+        app.get('/reportedItems', verifyJWT, verifyAdmin, async (req, res) => {
+            const query = {
+                isReport: true,
+            }
+            const result = await productsCollection.find(query).toArray()
+            res.send(result)
+        })
+        // ..delete reported items
+        app.delete('/deleteReportedItem', async (req, res) => {
+            const id = req.query.id
+            const query = { _id: ObjectId(id) }
+            const result = await productsCollection.deleteOne(query)
+            res.send(result)
         })
 
         // ...advertise..
