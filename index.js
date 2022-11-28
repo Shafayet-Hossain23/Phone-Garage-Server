@@ -128,7 +128,7 @@ async function run() {
             res.send(result)
         })
         // ..delete reported items
-        app.delete('/deleteReportedItem', async (req, res) => {
+        app.delete('/deleteReportedItem', verifyJWT, verifyAdmin, async (req, res) => {
             const id = req.query.id
             const query = { _id: ObjectId(id) }
             const result = await productsCollection.deleteOne(query)
@@ -367,6 +367,15 @@ async function run() {
             }
             const deleteUnpaidBookings = await bookingsCollection.deleteMany(bookingQuery)
             res.send({ deleteBuyer, deleteUnpaidBookings })
+        })
+        // show my buyers
+        app.get('/showMyBuyers', verifyJWT, verifySeller, async (req, res) => {
+            const email = req.query.email
+            const query = {
+                sellerEmail: email
+            }
+            const result = await bookingsCollection.find(query).toArray()
+            res.send(result)
         })
     }
     finally {
