@@ -96,11 +96,33 @@ async function run() {
             const result = await productsCollection.find(query).toArray()
             res.send(result)
         })
+        app.put('/reportProduct', verifyJWT, verifyAdmin, async (req, res) => {
+            const id = req.query.id
+            const query = {
+                _id: ObjectId(id),
+                isReport: true,
+            }
+            const alreadyReportedProduct = await productsCollection.findOne(query)
+            if (alreadyReportedProduct.length > 0) {
+                return res.send({ message: "Product is already reported" })
+            }
+            const filter = {
+                _id: ObjectId(id)
+            }
+            const updatedDoc = {
+                $set: {
+                    isReport: true,
+                }
+            }
+            const result = await productsCollection.updateOne(filter, updatedDoc);
+            res.send(result)
+
+        })
 
         // ...advertise..
         app.put('/advertise', verifyJWT, verifySeller, async (req, res) => {
             const id = req.query.id
-            console.log(id)
+            // console.log(id)
             const filter = {
                 _id: ObjectId(id)
             }
@@ -313,8 +335,22 @@ async function run() {
             const query = {
                 accountStatus: "Buyer Account"
             }
-            const allBuyers = await usersCollection.find(query).toArray()
-            res.send(allBuyers)
+            const result = await usersCollection.find(query).toArray()
+            res.send(result)
+        })
+        // ...deleteBuyers..
+        app.delete('/deleteBuyer', verifyJWT, verifyAdmin, async (req, res) => {
+            const email = req.query.email
+            const query = {
+                email: email
+            }
+            const deleteBuyer = await usersCollection.deleteOne(query)
+            const bookingQuery = {
+                customerEmail: email,
+                paid: false
+            }
+            const deleteUnpaidBookings = await bookingsCollection.deleteMany(bookingQuery)
+            res.send({ deleteBuyer, deleteUnpaidBookings })
         })
     }
     finally {
