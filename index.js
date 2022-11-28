@@ -307,6 +307,15 @@ async function run() {
             const deleteProducts = await productsCollection.deleteMany(query)
             res.send({ deleteUser, deleteProducts })
         })
+
+        // ..allBuyers...
+        app.get('/allBuyers', verifyJWT, verifyAdmin, async (req, res) => {
+            const query = {
+                accountStatus: "Buyer Account"
+            }
+            const allBuyers = await usersCollection.find(query).toArray()
+            res.send(allBuyers)
+        })
     }
     finally {
 
