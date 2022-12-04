@@ -86,8 +86,28 @@ async function run() {
         app.post('/products/add', verifyJWT, verifySeller, async (req, res) => {
             const productInfo = req.body
             const result = await productsCollection.insertOne(productInfo);
+            const query = {
+                email: productInfo.email
+            }
+            const alreadyAddedverifyUser = await productsCollection.findOne(query)
             res.send(result)
+            if (alreadyAddedverifyUser.verifiedStatus === "verified") {
+                const updatedDoc = {
+                    $set: {
+                        verifiedStatus: "verified",
+                    }
+                }
+                const newUpdatedVerify = await productsCollection.updateMany(query, updatedDoc);
+                return res.send(newUpdatedVerify)
+            }
+            // console.log(newUpdatedVerify)
+
         })
+        // app.post('/products/add', verifyJWT, verifySeller, async (req, res) => {
+        //     const productInfo = req.body
+        //     const result = await productsCollection.insertOne(productInfo);
+        //     res.send(result)
+        // })
         app.get('/sellerProducts', verifyJWT, verifySeller, async (req, res) => {
             const email = req.query.email
             const query = {
